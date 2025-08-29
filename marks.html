@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/js/bootstrap.bundle.js">
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <title>MarksCalculate</title>
+    <style>
+        .headMarks{
+             color:rgb(110, 64, 4);
+             text-align: center;
+             font-weight: 800;
+        }
+        .step1
+        {
+            background-color:rgb(248, 240, 229);
+            padding:20px 30px 20px 30px;
+            box-shadow:5px 10px 5px gray;
+            border-radius: 20px;
+            width:700px;
+        }
+        .step2
+        {
+            background-color:rgb(247, 231, 210);
+            padding:20px 30px 20px 30px;
+            box-shadow:2px 2px 10px gray;
+            border-radius: 20px;
+        }
+        .step3
+        {
+            background-color:rgb(238, 208, 168);
+            padding:35px;
+            box-shadow:2px 2px 10px gray;
+            border-radius: 20px;
+        }
+        body
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+        }
+    </style>
+</head>
+<body class="">
+    <div class="step1">
+        <div class="step2">
+            <div class="step3">
+                <h2 class="headMarks bi bi-marker-tip"> CALCULATE MARKS</h2>
+                <dl>
+                    <dt>Total mark</dt>
+                    <dd><input type="number" id="total" name="total" class="form-control" placeholder="Enter Marks" value="total" required></dd>
+                    <br>
+                    <dt>Marks obtained</dt>
+                    <dd><input type="number" id="obtained" name="obtained" class="form-control" placeholder="Enter obtained" value="obtained" required></dd>
+                    <br>
+                    <button id="btn" class="btn btn-warning text-center form-control fw-bold">CALCULATE</button>
+                     <br>
+                     <p id="percent" class="my-2 text-center"></p>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <script>
+        const totalInt=document.getElementById('total');
+        const obtInt=document.getElementById('obtained');
+        const btn=document.getElementById('btn');
+        const percent=document.getElementById('percent');
+
+        btn.addEventListener('click',function(e){
+            e.preventDefault();
+            const Total=totalInt.value;
+            const TotalObt=obtInt.value;
+            totalInt.value="";
+            obtInt.value='';
+            if(Total>0){
+                if(TotalObt <=Total && TotalObt>0){
+                    const percents=TotalObt/Total*100;
+                    percent.textContent=`Your Percentage: ${percents.toFixed(2)}%`;
+                    percent.style.fontSize="20px";
+                    percent.style.fontWeight="bold";
+                    percent.style.color="green";
+                }else{
+                percent.textContent='Please Enter valid ObtMark ';
+                percent.style.fontSize='15px';
+                percent.style.fontWeight="bold";
+                percent.style.color="red";
+            }
+            }
+            else{
+                percent.textContent='Please Enter Marks Then Calculate';
+                percent.style.fontSize='15px';
+                percent.style.fontWeight="bold";
+                percent.style.color="red";
+            }
+        })
+    </script>
+</body>
+</html>
